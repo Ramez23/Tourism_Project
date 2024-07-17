@@ -22,9 +22,11 @@ Tour Availability Validation: Ensures that a tour is not booked multiple times o
 
 ![Picture3](https://github.com/user-attachments/assets/e7a77124-c1e5-430b-b95e-92c4bc0b8cbc)
 ![Picture4](https://github.com/user-attachments/assets/1cb08e99-ea54-4331-bf98-a83ea8f08fbf)
+![Picture2](https://github.com/user-attachments/assets/ebbeb7b9-5905-4248-ad50-81077d9ed8aa)
 ![Picture5](https://github.com/user-attachments/assets/349677c5-d2d0-4725-97ed-964fc6ce764e)
 ![Picture6](https://github.com/user-attachments/assets/7a11c616-ac92-417d-ace4-8aa2df96b334)
 ![Picture7](https://github.com/user-attachments/assets/0842ad25-edf3-426b-bd53-08ad693ad7e3)
-![Screenshot 2024-06-28 113357](https://github.com/user-attachments/assets/49ac1dd9-54b3-4ee1-b264-1ac7babb9936)
 ![Screenshot 2024-07-01 114554](https://github.com/user-attachments/assets/df3d8194-40a5-4594-9992-1eb090f36650)
-![Picture2](https://github.com/user-attachments/assets/ebbeb7b9-5905-4248-ad50-81077d9ed8aa)
+![Screenshot 2024-06-28 113357](https://github.com/user-attachments/assets/49ac1dd9-54b3-4ee1-b264-1ac7babb9936)
+
+

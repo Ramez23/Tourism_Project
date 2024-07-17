@@ -18,3 +18,13 @@ Place Checking: Users can view detailed descriptions and safety tips for each pl
 Favorites Management: Users can add and remove favorite places.
 Search Functionality: Allows users to search for places based on specific criteria.
 Tour Availability Validation: Ensures that a tour is not booked multiple times on the same date, providing accurate availability status.
+
+
+![Picture3](https://github.com/user-attachments/assets/e7a77124-c1e5-430b-b95e-92c4bc0b8cbc)
+![Picture4](https://github.com/user-attachments/assets/1cb08e99-ea54-4331-bf98-a83ea8f08fbf)
+![Picture5](https://github.com/user-attachments/assets/349677c5-d2d0-4725-97ed-964fc6ce764e)
+![Picture6](https://github.com/user-attachments/assets/7a11c616-ac92-417d-ace4-8aa2df96b334)
+![Picture7](https://github.com/user-attachments/assets/0842ad25-edf3-426b-bd53-08ad693ad7e3)
+![Screenshot 2024-07-01 133521](https://github.com/user-attachments/assets/b0017cff-35b3-4bd4-b034-bc9dc012abaa)
+![Screenshot 2024-06-28 113357](https://github.com/user-attachments/assets/01f233cf-ab51-41b8-982b-ec8185ecef39)
+![Picture2](https://github.com/user-attachments/assets/ebbeb7b9-5905-4248-ad50-81077d9ed8aa)

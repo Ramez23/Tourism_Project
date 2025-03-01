@@ -35,10 +35,10 @@ export default function Requests() {
         }
 
         const [toursResponse, cancellationsResponse] = await Promise.all([
-          axios.get("http://localhost:3000/api/v1/tours/pending-tours", {
+          axios.get(`${process.env.REACT_APP_BASE_URL}/tours/pending-tours`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:3000/api/v1/cancellation-requests", {
+          axios.get(`${process.env.REACT_APP_BASE_URL}/cancellation-requests`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -65,7 +65,7 @@ export default function Requests() {
       const { token } = parsedData;
 
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/tours/approve-tour/${tourId}`,
+        `${process.env.REACT_APP_BASE_URL}/tours/approve-tour/${tourId}`,
         {},
         {
           headers: {
@@ -97,7 +97,7 @@ export default function Requests() {
       const parsedData = JSON.parse(storedData);
       const { token } = parsedData;
 
-      await axios.delete(`http://localhost:3000/api/v1/tours/${tourId}`, {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/tours/${tourId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -121,7 +121,7 @@ export default function Requests() {
       const { token } = parsedData;
 
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/cancellation-requests/${requestId}`,
+        `${process.env.REACT_APP_BASE_URL}/cancellation-requests/${requestId}`,
         { status: "approved" },
         {
           headers: {
@@ -156,7 +156,7 @@ export default function Requests() {
       const { token } = parsedData;
 
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/cancellation-requests/${requestId}`,
+        `${process.env.REACT_APP_BASE_URL}/cancellation-requests/${requestId}`,
         { status: "rejected" },
         {
           headers: {
@@ -259,7 +259,10 @@ export default function Requests() {
                   <div className="requests-button">
                     <button
                       onClick={() => handleApproveCancellation(request._id)}
-                      disabled={request.status === "approved" || request.status==="rejected"}
+                      disabled={
+                        request.status === "approved" ||
+                        request.status === "rejected"
+                      }
                       style={{
                         opacity: request.status === "approved" ? 0.5 : 1,
                       }}
@@ -268,7 +271,10 @@ export default function Requests() {
                     </button>
                     <button
                       onClick={() => handleDeclineCancellation(request._id)}
-                      disabled={request.status === "approved" || request.status==="rejected"}
+                      disabled={
+                        request.status === "approved" ||
+                        request.status === "rejected"
+                      }
                       style={{
                         opacity: request.status === "rejected" ? 0.5 : 1,
                       }}

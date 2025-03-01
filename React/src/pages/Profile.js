@@ -25,7 +25,7 @@ export default function Profile() {
     if (userData.data.user) {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/favorites",
+          `${process.env.REACT_APP_BASE_URL}/users/favorites`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -38,9 +38,8 @@ export default function Profile() {
         console.error("Error fetching favorites:", error);
         return [];
       }
-    }
-    else {
-      return
+    } else {
+      return;
     }
   }, []);
 
@@ -64,7 +63,7 @@ export default function Profile() {
       if (userData && userData.token) {
         const token = userData.token;
         const response = await axios.delete(
-          "http://localhost:3000/api/v1/users/favorites",
+          `${process.env.REACT_APP_BASE_URL}/users/favorites`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -88,48 +87,44 @@ export default function Profile() {
     const formData = new FormData();
     formData.append("photo", file);
 
-    const userData = JSON.parse(window.localStorage.getItem('userData'));
+    const userData = JSON.parse(window.localStorage.getItem("userData"));
 
-    let apiUrl = "http://localhost:3000/api/v1/users/updateMe";
+    let apiUrl = `${process.env.REACT_APP_BASE_URL}/users/updateMe`;
     let updatedData = {};
 
     if (userData.data.user) {
-      apiUrl = "http://localhost:3000/api/v1/users/updateMe";
+      apiUrl = `${process.env.REACT_APP_BASE_URL}/users/updateMe`;
       updatedData = {
         ...userData,
         data: {
           ...userData.data,
           user: {
             ...userData.data.user,
-            photo: null // this will be updated later
-          }
-        }
+            photo: null, // this will be updated later
+          },
+        },
       };
     } else if (userData.data.tour) {
-      apiUrl = `http://localhost:3000/api/v1/tours/${userData.data.tour._id}`;
+      apiUrl = `${process.env.REACT_APP_BASE_URL}/tours/${userData.data.tour._id}`;
       updatedData = {
         ...userData,
         data: {
           ...userData.data,
           tour: {
             ...userData.data.tour,
-            imageCover: null // this will be updated later
-          }
-        }
+            imageCover: null, // this will be updated later
+          },
+        },
       };
     }
 
     try {
-      const response = await axios.patch(
-        apiUrl,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${userData.token}`,
-          },
-        }
-      );
+      const response = await axios.patch(apiUrl, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${userData.token}`,
+        },
+      });
       console.log("Photo upload response:", response);
       alert("Profile photo updated successfully!");
 
@@ -150,20 +145,25 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const token = window.localStorage.getItem('token'); // Retrieve the token from localStorage
+      const token = window.localStorage.getItem("token"); // Retrieve the token from localStorage
 
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/reviews', {
-          headers: {
-            Authorization: `Bearer ${token}`
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/reviews`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
         const reviewArray = response.data.data.data;
         console.log(response);
         console.log(reviewArray);
 
-        const filteredReviews = reviewArray.filter(review => review.tour === userData.data.tour._id);
-        console.log(filteredReviews)
+        const filteredReviews = reviewArray.filter(
+          (review) => review.tour === userData.data.tour._id
+        );
+        console.log(filteredReviews);
         setReviews(filteredReviews);
         setLoading(false);
       } catch (err) {
@@ -174,7 +174,6 @@ export default function Profile() {
 
     fetchReviews();
   }, [userData]);
-
 
   if (!userData) {
     return (
@@ -193,7 +192,7 @@ export default function Profile() {
   return (
     <>
       <Nav />
-      {userData.data.user ?
+      {userData.data.user ? (
         <div className="profile-main">
           <div className="profile-part">
             <h2 className="profile-title">My Profile</h2>
@@ -204,7 +203,8 @@ export default function Profile() {
                   alt="Profile"
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = "http://localhost:3000/img/users/default.jpg";
+                    e.target.src =
+                      "http://localhost:3000/img/users/default.jpg";
                   }}
                 />
               ) : (
@@ -268,25 +268,34 @@ export default function Profile() {
               <p>No favorite places yet.</p>
             )}
           </div>
-        </div> :
+        </div>
+      ) : (
         <div className="profile-main">
           <div className="profile-part">
             <h2 className="profile-title">My Profile</h2>
             <span className="profile-email">
               <h2>E-Mail</h2>
-              <p className="pass-email">{isLoggedIn ? userData.data.tour.email : "Loading..."}</p>
+              <p className="pass-email">
+                {isLoggedIn ? userData.data.tour.email : "Loading..."}
+              </p>
             </span>
             <span className="profile-email">
               <h2>Name</h2>
-              <p className="pass-email">{isLoggedIn ? userData.data.tour.name : "Loading..."}</p>
+              <p className="pass-email">
+                {isLoggedIn ? userData.data.tour.name : "Loading..."}
+              </p>
             </span>
             <span className="profile-email">
               <h2>Price</h2>
-              <p className="pass-email">{isLoggedIn ? userData.data.tour.price : "Loading..."}</p>
+              <p className="pass-email">
+                {isLoggedIn ? userData.data.tour.price : "Loading..."}
+              </p>
             </span>
             <span className="profile-email">
               <h2>Location</h2>
-              <p className="pass-email">{isLoggedIn ? userData.data.tour.location : "Loading..."}</p>
+              <p className="pass-email">
+                {isLoggedIn ? userData.data.tour.location : "Loading..."}
+              </p>
             </span>
             <span className="profile-pass">
               <h2>Password</h2>
@@ -299,7 +308,11 @@ export default function Profile() {
           </div>
           <div className="favorites-section">
             <h2>My reviews</h2>
-            <h3><i class="fa-solid fa-star fa-xs"></i> {userData.data.tour.ratingsAverage} ({userData.data.tour.ratingsQuantity})</h3>
+            <h3>
+              <i class="fa-solid fa-star fa-xs"></i>{" "}
+              {userData.data.tour.ratingsAverage} (
+              {userData.data.tour.ratingsQuantity})
+            </h3>
             {reviews && reviews.length > 0 ? (
               <ul className="favorites-list">
                 {reviews.map((review) => (
@@ -319,7 +332,7 @@ export default function Profile() {
             )}
           </div>
         </div>
-      }
+      )}
       <Footer name="footer-main" />
     </>
   );

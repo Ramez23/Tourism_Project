@@ -138,7 +138,7 @@ export default function SignLogin() {
 
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/users/signup",
+          `${process.env.REACT_APP_BASE_URL}/users/signup`,
           { name, email, password, role }
         );
         setUser(response.data);
@@ -202,7 +202,7 @@ export default function SignLogin() {
       try {
         const response = await axios({
           method: "post",
-          url: "http://localhost:3000/api/v1/tours/signup",
+          url: `${process.env.REACT_APP_BASE_URL}/tours/signup`,
           data: data,
           headers: { "Content-Type": "multipart/form-data" },
         });
@@ -246,7 +246,7 @@ export default function SignLogin() {
       setErrors({});
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/users/login",
+          `${process.env.REACT_APP_BASE_URL}/users/login`,
           {
             email,
             password,
@@ -285,7 +285,7 @@ export default function SignLogin() {
       }
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/tours/login",
+          `${process.env.REACT_APP_BASE_URL}/tours/login`,
           {
             email,
             password,
@@ -312,15 +312,17 @@ export default function SignLogin() {
       <div className="signin-main">
         <span className="signin-options">
           <i
-            className={`fa-solid fa-user-tie fa-xl icon ${userState === "tourguide" ? "active" : ""
-              }`}
+            className={`fa-solid fa-user-tie fa-xl icon ${
+              userState === "tourguide" ? "active" : ""
+            }`}
             onClick={() => {
               handleOptionsSignIn("tourguide");
             }}
           ></i>
           <i
-            className={`fa-solid fa-user fa-xl icon ${userState === "user" ? "active" : ""
-              }`}
+            className={`fa-solid fa-user fa-xl icon ${
+              userState === "user" ? "active" : ""
+            }`}
             onClick={() => {
               handleOptionsSignIn("user");
             }}
@@ -426,15 +428,17 @@ export default function SignLogin() {
               </span>
               <span className="signup-options">
                 <i
-                  className={`fa-solid fa-user-tie fa-xl icon ${userState === "tourguide" ? "active" : ""
-                    }`}
+                  className={`fa-solid fa-user-tie fa-xl icon ${
+                    userState === "tourguide" ? "active" : ""
+                  }`}
                   onClick={() => {
                     handleOptionsSignUp("tourguide");
                   }}
                 ></i>
                 <i
-                  className={`fa-solid fa-user fa-xl icon ${userState === "user" ? "active" : ""
-                    }`}
+                  className={`fa-solid fa-user fa-xl icon ${
+                    userState === "user" ? "active" : ""
+                  }`}
                   onClick={() => {
                     handleOptionsSignUp("user");
                   }}

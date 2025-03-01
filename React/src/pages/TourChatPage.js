@@ -19,7 +19,7 @@ const TourChatPage = () => {
 
       try {
         const chatsResponse = await axios.get(
-          `http://localhost:3000/api/v1/chats/tour/${tourData.data.tour._id}`,
+          `${process.env.REACT_APP_BASE_URL}/chats/tour/${tourData.data.tour._id}`,
           { headers: { Authorization: `Bearer ${tourData.token}` } }
         );
         const allChats = chatsResponse.data.data.chats || [];

@@ -19,7 +19,7 @@ const UserChatPage = () => {
       console.log(userData);
       try {
         const chatsResponse = await axios.get(
-          `http://localhost:3000/api/v1/chats/user/${userData.data.user._id}`,
+          `${process.env.REACT_APP_BASE_URL}/chats/user/${userData.data.user._id}`,
           { headers: { Authorization: `Bearer ${userData.token}` } }
         );
         const allChats = chatsResponse.data.data.chats || [];

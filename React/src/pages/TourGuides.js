@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import TourGuide from "../components/TourGuide";
 import Category_part from "../components/Category_part";
 
-const API_URL = "http://localhost:3000/api/v1/tours";
+const API_URL = `${process.env.REACT_APP_BASE_URL}/tours`;
 
 function TourGuides() {
   const [tours, setTours] = useState([]);
@@ -46,14 +46,11 @@ function TourGuides() {
         )}
         <div className="staff-div">
           {tours.map((tour) => (
-            <TourGuide
-              key={tour._id}
-              tour={tour}
-            />
+            <TourGuide key={tour._id} tour={tour} />
           ))}
         </div>
       </div>
-      <Footer name="footer-main"/>
+      <Footer name="footer-main" />
     </>
   );
 }

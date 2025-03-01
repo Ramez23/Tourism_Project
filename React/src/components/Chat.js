@@ -28,7 +28,7 @@ const Chat = ({ chatId }) => {
     const fetchMessages = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/messages/${chatId}`
+          `${process.env.REACT_APP_BASE_URL}/messages/${chatId}`
         );
         setMessages(response.data.data.messages);
       } catch (error) {
@@ -38,7 +38,7 @@ const Chat = ({ chatId }) => {
 
     fetchMessages();
   }, [chatId, participantId]);
-   console.log(chatId);
+  console.log(chatId);
   const handleSendMessage = async () => {
     if (!participantId) {
       console.error("No active participant ID available for sending messages.");
@@ -46,7 +46,7 @@ const Chat = ({ chatId }) => {
     }
 
     try {
-      await axios.post(`http://localhost:3000/api/v1/messages`, {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/messages`, {
         chatId,
         senderId: participantId,
         text: newMessage,

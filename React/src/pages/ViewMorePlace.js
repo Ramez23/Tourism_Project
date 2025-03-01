@@ -26,7 +26,7 @@ export default function ViewMore() {
     const fetchPlaceById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/place/${id}`
+          `${process.env.REACT_APP_BASE_URL}/place/${id}`
         );
         if (response.data && response.data.data) {
           setPlace(response.data.data); // Ensure this matches your API response structure
@@ -89,7 +89,7 @@ export default function ViewMore() {
 
     try {
       const bookingDetails = await axios.post(
-        "http://localhost:3000/api/v1/bookings",
+        `${process.env.REACT_APP_BASE_URL}/bookings`,
         {
           tour: bookedTourGuide ? bookedTourGuide._id : null,
           places: place ? [place._id] : [], // Ensure places is an array of place IDs
@@ -119,7 +119,9 @@ export default function ViewMore() {
 
   const handlePickTourGuide = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/tours");
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/tours`
+      );
       const toursData = response.data.data.data || [];
 
       // Check if place.location exists and is a string

@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchMessages = async (chatId) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/messages/${chatId}`,
+      `${process.env.REACT_APP_BASE_URL}/messages/${chatId}`,
       {
         headers: {
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -23,7 +23,7 @@ export const sendMessage = async (chatId, text) => {
   try {
     const token = window.localStorage.getItem("token");
     const response = await axios.post(
-      `http://localhost:3000/api/v1/messages/${chatId}`,
+      `${process.env.REACT_APP_BASE_URL}/messages/${chatId}`,
       { text },
       {
         headers: {

@@ -33,7 +33,7 @@ export default function ChangePassword({ email }) {
 
     try {
       const response = await axios.patch(
-        "http://localhost:3000/api/v1/users/updateMyPassword",
+        `${process.env.REACT_APP_BASE_URL}/users/updateMyPassword`,
         {
           passwordCurrent: currentPassword,
           password: newPassword,

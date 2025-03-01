@@ -34,7 +34,7 @@ export default function MyTrips() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/bookings/user/${userData.data.user._id}`,
+          `${process.env.REACT_APP_BASE_URL}/bookings/user/${userData.data.user._id}`,
           { headers: { Authorization: `Bearer ${userData.token}` } }
         );
         console.log("API Response:", response.data);
@@ -47,7 +47,7 @@ export default function MyTrips() {
         );
         const placeResponses = await Promise.all(
           placeIds.map((id) =>
-            axios.get(`http://localhost:3000/api/v1/place/${id}`, {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/place/${id}`, {
               headers: { Authorization: `Bearer ${userData.token}` },
             })
           )
@@ -64,7 +64,7 @@ export default function MyTrips() {
         console.log(tourIds);
         const tourResponses = await Promise.all(
           tourIds.map((id) =>
-            axios.get(`http://localhost:3000/api/v1/tours/${id}`, {
+            axios.get(`${process.env.REACT_APP_BASE_URL}/tours/${id}`, {
               headers: { Authorization: `Bearer ${userData.token}` },
             })
           )
@@ -105,9 +105,12 @@ export default function MyTrips() {
       window.localStorage.getItem("userData") || "{}"
     );
     try {
-      await axios.delete(`http://localhost:3000/api/v1/bookings/${bookingId}`, {
-        headers: { Authorization: `Bearer ${userData.token}` },
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/bookings/${bookingId}`,
+        {
+          headers: { Authorization: `Bearer ${userData.token}` },
+        }
+      );
       setBookings((prev) =>
         prev.filter((booking) => booking._id !== bookingId)
       );
@@ -127,7 +130,7 @@ export default function MyTrips() {
     );
     try {
       await axios.post(
-        `http://localhost:3000/api/v1/cancellation-requests`,
+        `${process.env.REACT_APP_BASE_URL}/cancellation-requests`,
         { bookingId: cancelRequest, reason: cancelReason },
         {
           headers: { Authorization: `Bearer ${userData.token}` },
@@ -156,7 +159,7 @@ export default function MyTrips() {
     try {
       const updatePromises = selectedBookings.map((booking) => {
         return axios.patch(
-          `http://localhost:3000/api/v1/bookings/${booking._id}`,
+          `${process.env.REACT_APP_BASE_URL}/bookings/${booking._id}`,
           { paid: true, status: "confirmed" },
           {
             headers: { Authorization: `Bearer ${userData.token}` },
@@ -205,7 +208,7 @@ export default function MyTrips() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/reviews`,
+        `${process.env.REACT_APP_BASE_URL}/reviews`,
         {
           review, // Assuming 'review' and 'rating' are defined elsewhere in your component
           rating,

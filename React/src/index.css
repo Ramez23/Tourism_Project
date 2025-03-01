@@ -163,17 +163,25 @@ body {
   
 /*categorypart*/
 .first-home-part {
-	position: relative;
-	height: 600px;
-	overflow: hidden;
-}
-
-.background-image {
-	width: 100%; /* Makes it fully responsive */
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center; /* Center contents */
+	align-items: center;
+	overflow: hidden; /* Prevents unwanted spacing */
+  }
+  
+  .background-image {
+	width: 100%;
 	max-width: 100vw;
 	height: auto;
-}
-
+	max-height: 500px;
+	display: block;
+	object-fit: cover;
+	object-position: top; /* Moves focus to the top part of the image */
+  }
+  
+  
 .first-home-part-writings {
 	width: 100%;
 	margin-top: 0px;

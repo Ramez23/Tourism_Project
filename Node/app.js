@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables FIRST
+
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -8,6 +10,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const mongoose = require('mongoose'); // Ensure mongoose is imported
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -21,6 +24,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json({ limit: '10mb' })); // Adjust the limit as needed
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
+require('dotenv').config();
 
 // CORS configuration
 const corsOptions = {

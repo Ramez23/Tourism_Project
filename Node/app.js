@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 // CORS configuration
 const corsOptions = {
-  origin: 'http://localhost:3001', // Update with your front-end URL
+  origin: process.env.CORS || 'http://localhost:3001', // Use .env value, fallback to localhost
   credentials: true // Allow cookies to be sent with requests
 };
 app.use(cors(corsOptions));
